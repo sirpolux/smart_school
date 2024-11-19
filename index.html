@@ -9,42 +9,51 @@
   <style>
     /* Additional custom styles */
     .hero-bg {
-      background: url('https://via.placeholder.com/1600x900') no-repeat center center;
+      background: url('/images/background.jpg') no-repeat center center;
       background-size: cover;
     }
   </style>
 </head>
 <body class="font-sans leading-normal tracking-normal text-gray-900">
 
-<!-- Header / Navbar -->
-<header class="bg-white shadow-md fixed w-full z-10">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="flex justify-between items-center py-4">
-      <!-- Logo -->
-      <div class="flex items-center space-x-4">
-        <img src="https://via.placeholder.com/50" alt="School Logo" class="h-10 w-10">
-        <span class="text-xl font-semibold">MidSchool</span>
-      </div>
-      
-      <!-- Menu Button for Mobile -->
-      <div class="md:hidden">
-        <button id="menu-btn" class="text-gray-700">
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
-        </button>
-      </div>
-      
-      <!-- Menu Links -->
-      <nav id="menu" class="hidden md:flex space-x-6">
-        <a href="#about" class="hover:text-blue-600">About</a>
-        <a href="#services" class="hover:text-blue-600">Services</a>
-        <a href="#contact" class="hover:text-blue-600">Contact</a>
-      </nav>
-    </div>
-  </div>
-</header>
 
+  <header class="bg-white shadow-md fixed w-full z-10">
+    <nav class="bg-white text-gray-700 py-4">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <!-- Logo -->
+        <div class="flex items-center space-x-4">
+          <img src="https://via.placeholder.com/50" alt="School Logo" class="h-10 w-10">
+          <span class="text-xl font-semibold">MidSchool</span>
+        </div>
+  
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-4">
+          <a href="#home" class="hover:underline">Home</a>
+          <a href="#about" class="hover:underline">About</a>
+          <a href="#services" class="hover:underline">Services</a>
+          <a href="#contact" class="hover:underline">Contact</a>
+        </div>
+  
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button id="menu-btn" class="focus:outline-none">
+            <svg class="w-6 h-6 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+  
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-blue-600">
+        <a href="#home" class="block text-white px-4 py-2">Home</a>
+        <a href="#about" class="block text-white px-4 py-2">About</a>
+        <a href="#services" class="block text-white px-4 py-2">Services</a>
+        <a href="#contact" class="block text-white px-4 py-2">Contact</a>
+      </div>
+    </nav>
+  </header>
+  
 <!-- Hero Section -->
 <section class="hero-bg h-screen flex flex-col justify-center items-center text-center text-white">
   <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to MidSchool</h1>
@@ -130,9 +139,20 @@
 </footer>
 
 <script>
-  // Toggle menu for mobile
-  document.getElementById('menu-btn').addEventListener('click', () => {
-    document.getElementById('menu').classList.toggle('hidden');
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuLinks = mobileMenu.querySelectorAll('a');
+
+  // Toggle menu visibility on button click
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Close menu when a link is clicked
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
   });
 </script>
 
