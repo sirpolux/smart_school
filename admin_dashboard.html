@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
+  <title>Responsive Admin Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -11,12 +11,52 @@
     }
   </style>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-row">
+<body class="bg-gray-100 min-h-screen flex">
+
+  <!-- Sidebar Navigation -->
+  <aside id="sidebar" class="w-64 bg-gray-800 text-white p-6 fixed inset-y-0 left-0 transform -translate-x-full transition-transform duration-300 md:translate-x-0 md:relative md:transform-none">
+    <nav>
+      <h2 class="text-xl font-semibold mb-6">Navigation</h2>
+      <ul class="space-y-4">
+        <li>
+          <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Dashboard</a>
+        </li>
+        <li>
+          <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Student</a>
+        </li>
+        <li>
+          <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Class</a>
+        </li>
+        <li>
+          <!-- Collapsible Menu -->
+          <div>
+            <button id="result-btn" class="block py-2 px-4 rounded hover:bg-gray-700 w-full text-left flex justify-between items-center">
+              Result
+              <svg id="arrow-icon" class="w-5 h-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+            <ul id="result-submenu" class="hidden pl-4 space-y-2">
+              <li><a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">First Term</a></li>
+              <li><a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Second Term</a></li>
+              <li><a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Third Term</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </aside>
 
   <!-- Main Content Area -->
-  <main class="flex-1 p-6">
+  <main class="flex-1 p-6 ml-0 md:ml-64">
+    <!-- Mobile Toggle Button -->
     <header class="flex justify-between items-center mb-6">
       <h1 class="text-2xl font-bold text-gray-800">Admin Dashboard</h1>
+      <button id="menu-toggle" class="block md:hidden focus:outline-none bg-gray-800 text-white p-2 rounded">
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+        </svg>
+      </button>
     </header>
 
     <!-- Term Cards -->
@@ -36,33 +76,24 @@
     </div>
   </main>
 
-  <!-- Sidebar Navigation -->
-  <aside class="w-64 bg-gray-800 text-white p-6 flex-shrink-0">
-    <nav>
-      <h2 class="text-xl font-semibold mb-6">Navigation</h2>
-      <ul class="space-y-4">
-        <li>
-          <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Dashboard</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Student</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Class</a>
-        </li>
-        <li>
-          <div class="flex justify-between items-center">
-            <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700 flex-grow">Result</a>
-            <button class="text-gray-400 hover:text-gray-300">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </button>
-          </div>
-        </li>
-      </ul>
-    </nav>
-  </aside>
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const resultBtn = document.getElementById('result-btn');
+    const resultSubmenu = document.getElementById('result-submenu');
+    const arrowIcon = document.getElementById('arrow-icon');
+
+    // Toggle Sidebar for Mobile
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('-translate-x-full');
+    });
+
+    // Collapsible Result Submenu
+    resultBtn.addEventListener('click', () => {
+      resultSubmenu.classList.toggle('hidden');
+      arrowIcon.classList.toggle('rotate-90');
+    });
+  </script>
 
 </body>
 </html>
