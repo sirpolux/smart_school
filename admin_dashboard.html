@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Responsive Admin Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/dbc64abf3e.js" crossorigin="anonymous"></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -15,32 +16,60 @@
 
   <!-- Sidebar Navigation -->
   <aside id="sidebar" class="w-64 bg-gray-800 text-white p-6 fixed inset-y-0 left-0 transform -translate-x-full transition-transform duration-300 md:translate-x-0 md:relative md:transform-none">
-    <nav>
-      <h2 class="text-xl font-semibold mb-6">Navigation</h2>
+    <!-- User Info -->
+       <!-- Always Visible Toggle Button -->
+    <header class="flex justify-between items-center mb-2">
+      <h1 class="text-2xl font-bold text-gray-800">Admin Dashboard</h1>
+      <button id="menu-toggle-2" class="focus:outline-none bg-gray-800 text-white p-2 rounded">
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+        </svg>
+      </button>
+    </header>
+    <div class="mb-8 text-center">
+      <img src="images/photo_2.jpg" alt="User Avatar" class="w-28 h-28 mx-auto rounded-full mb-4">
+      <h3 class="text-xl font-semibold">John Doe</h3>
+      <p class="text-gray-400">Admin</p>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="text-sm">
+      <h2 class="text-lg font-semibold mb-4">Navigation</h2>
       <ul class="space-y-4">
         <li>
-          <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Dashboard</a>
+          <div class="flex items-center justify-items-center gap-3 py-2 rounded px-4 hover:bg-gray-700 ">
+            <i class="fas fa-home"></i> <a href="#" class="block">Dashboard</a>
+          </div>
         </li>
         <li>
-          <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Student</a>
+          <div class="flex items-center justify-items-center gap-3 py-2 rounded px-4 hover:bg-gray-700 ">
+            <i class="fas fa-user-graduate"></i><a href="#" class="block">Student</a>
+          </div>
+          
         </li>
         <li>
-          <a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Class</a>
+          <div class="flex items-center justify-items-center gap-3 py-2 rounded px-4 hover:bg-gray-700 ">
+            <i class="fas fa-chalkboard-teacher"></i></i>  <a href="#" class="block">Class</a>
+          </div>
+        
         </li>
         <li>
           <!-- Collapsible Menu -->
-          <div>
-            <button id="result-btn" class="block py-2 px-4 rounded hover:bg-gray-700 w-full text-left flex justify-between items-center">
-              Result
-              <svg id="arrow-icon" class="w-5 h-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </button>
-            <ul id="result-submenu" class="hidden pl-4 space-y-2">
-              <li><a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">First Term</a></li>
-              <li><a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Second Term</a></li>
-              <li><a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Third Term</a></li>
-            </ul>
+            <div>
+              <div class="flex justify-items-center items-center gap-3 py-2 px-4  hover:bg-gray-700 rounded">
+                <i class="fas fa-poll-h"></i> 
+                <button id="result-btn" class="block rounded w-full text-left flex justify-between items-center">
+                  Data
+                  <svg id="arrow-icon" class="w-5 h-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+            </div>
+              <ul id="result-submenu" class="hidden pl-4 space-y-2">
+                <li><a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">First Term</a></li>
+                <li><a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Second Term</a></li>
+                <li><a href="#" class="block py-2 px-4 rounded hover:bg-gray-700">Third Term</a></li>
+              </ul>  
           </div>
         </li>
       </ul>
@@ -48,11 +77,11 @@
   </aside>
 
   <!-- Main Content Area -->
-  <main class="flex-1 p-6 ml-0 md:ml-64">
-    <!-- Mobile Toggle Button -->
-    <header class="flex justify-between items-center mb-6">
+  <main class="flex-1 p-6">
+    <!-- Always Visible Toggle Button -->
+    <header class="flex justify-between items-center mb-6 md:hidden">
       <h1 class="text-2xl font-bold text-gray-800">Admin Dashboard</h1>
-      <button id="menu-toggle" class="block md:hidden focus:outline-none bg-gray-800 text-white p-2 rounded">
+      <button id="menu-toggle" class="focus:outline-none bg-gray-800 text-white p-2 rounded">
         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
         </svg>
@@ -61,17 +90,41 @@
 
     <!-- Term Cards -->
     <div class="grid gap-6 grid-cols-1 md:grid-cols-3">
-      <div class="bg-white p-4 rounded shadow-md hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold text-gray-700">First Term</h2>
-        <p class="text-gray-600 mt-2">Overview of activities for the first term.</p>
+      <div class="bg-white p-8 px-4 rounded shadow-md hover:shadow-lg transition">
+        <div>
+          <h2 class="text-xl text-gray-700">TOTAL STUDENTS</h2>
+        </div>
+        <div class="mt-4 border w-12 h-12 flex items-center justify-center rounded-full">
+          <span class="">296</span>
+        </div>
+        <div class="mt-4">
+          <div class="bg-sky-400 w-full h-3 rounded-lg"></div>
+        </div>
+        
       </div>
-      <div class="bg-white p-4 rounded shadow-md hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold text-gray-700">Second Term</h2>
-        <p class="text-gray-600 mt-2">Overview of activities for the second term.</p>
+      <div class="bg-white p-8 px-4 rounded shadow-md hover:shadow-lg transition">
+        <div>
+          <h2 class="text-xl text-gray-700">TOTAL STAFFS</h2>
+        </div>
+        <div class="mt-4 border w-12 h-12 flex items-center justify-center rounded-full">
+          <span class="">296</span>
+        </div>
+        <div class="mt-4">
+          <div class="bg-sky-400 w-full h-3 rounded-lg"></div>
+        </div>
+        
       </div>
-      <div class="bg-white p-4 rounded shadow-md hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold text-gray-700">Third Term</h2>
-        <p class="text-gray-600 mt-2">Overview of activities for the third term.</p>
+      <div class="bg-white p-8 px-4 rounded shadow-md hover:shadow-lg transition">
+        <div>
+          <h2 class="text-xl font-semibold text-gray-700">SUBJECTS</h2>
+        </div>
+        <div class="mt-4 border w-12 h-12 flex items-center justify-center rounded-full">
+          <span class="">296</span>
+        </div>
+        <div class="mt-4">
+          <div class="bg-sky-400 w-full h-3 rounded-lg"></div>
+        </div>
+        
       </div>
     </div>
   </main>
@@ -83,7 +136,7 @@
     const resultSubmenu = document.getElementById('result-submenu');
     const arrowIcon = document.getElementById('arrow-icon');
 
-    // Toggle Sidebar for Mobile
+    // Toggle Sidebar
     menuToggle.addEventListener('click', () => {
       sidebar.classList.toggle('-translate-x-full');
     });
